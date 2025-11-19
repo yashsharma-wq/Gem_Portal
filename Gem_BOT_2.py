@@ -19,9 +19,13 @@ st.set_page_config(page_title="GEM Service Tender Chatbot (Conversational)", pag
 
 # -------------------------------
 # Config (env vars)
-SUPABASE_URL = os.getenv("SUPABASE_URL")
-SUPABASE_KEY = os.getenv("SUPABASE_KEY")
-OPENAI_API_KEY = os.getenv("OPENAI_API_KEY")
+# SUPABASE_URL = os.getenv("SUPABASE_URL")
+# SUPABASE_KEY = os.getenv("SUPABASE_KEY")
+# OPENAI_API_KEY = os.getenv("OPENAI_API_KEY")
+SUPABASE_URL = st.secrets.get("SUPABASE_URL", os.getenv("SUPABASE_URL"))
+SUPABASE_KEY = st.secrets.get("SUPABASE_KEY", os.getenv("SUPABASE_KEY"))
+OPENAI_API_KEY = st.secrets.get("OPENAI_API_KEY", os.getenv("OPENAI_API_KEY"))
+
 
 if not SUPABASE_URL or not SUPABASE_KEY or not OPENAI_API_KEY:
     st.error("Please set SUPABASE_URL, SUPABASE_KEY and OPENAI_API_KEY environment variables.")
@@ -427,3 +431,4 @@ st.sidebar.write(f"Last summary (snippet):")
 st.sidebar.text_area("summary", value=(st.session_state.get('last_summary') or "")[:600], height=150)
 st.sidebar.markdown("---")
 st.sidebar.write("Note: Use 'Select a tender' dropdown to view details or 'Show all results' to expand the full table.")
+
