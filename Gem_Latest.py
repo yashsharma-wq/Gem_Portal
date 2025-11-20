@@ -13,13 +13,18 @@ from datetime import datetime
 from supabase import create_client
 from openai import OpenAI
 from typing import List, Dict, Any
-from dotenv import load_dotenv
+# from dotenv import load_dotenv
 
 # ------------------------- Load Environment Variables -------------------------
-load_dotenv()
-SUPABASE_URL = os.getenv("SUPABASE_URL")
-SUPABASE_KEY = os.getenv("SUPABASE_KEY")
-OPENAI_API_KEY = os.getenv("OPENAI_API_KEY")
+# load_dotenv()
+# SUPABASE_URL = os.getenv("SUPABASE_URL")
+# SUPABASE_KEY = os.getenv("SUPABASE_KEY")
+# OPENAI_API_KEY = os.getenv("OPENAI_API_KEY")
+
+SUPABASE_URL = st.secrets.get("SUPABASE_URL")
+SUPABASE_KEY = st.secrets.get("SUPABASE_KEY")
+OPENAI_API_KEY = st.secrets.get("OPENAI_API_KEY")
+
 
 if not SUPABASE_URL or not SUPABASE_KEY or not OPENAI_API_KEY:
     st.error("Missing SUPABASE_URL, SUPABASE_KEY, or OPENAI_API_KEY.")
@@ -454,3 +459,4 @@ if st.session_state.context_text:
 
 else:
     st.info("⚙️ Apply filters and click **Load Tender Context** to begin.")
+
