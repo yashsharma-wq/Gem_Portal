@@ -12,7 +12,7 @@ from datetime import datetime
 from supabase import create_client
 from openai import OpenAI
 from typing import List, Dict, Any
-from dotenv import load_dotenv
+
 
 # ------------------------- Load Environment Variables -------------------------
 # load_dotenv()
@@ -425,4 +425,5 @@ if st.session_state.context_text:
 
 else:
     st.info("⚙️ Apply filters and click **Load Tender Context** to begin.")
+
 
